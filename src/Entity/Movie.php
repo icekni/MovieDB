@@ -25,7 +25,7 @@ class Movie
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100, unique=true)
+     * @ORM\Column(type="string", length=100)
      */
     private $title;
 
@@ -64,6 +64,8 @@ class Movie
         $this->genres = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->castings = new ArrayCollection();
+
+        $this->createdAt = new \DateTime();
     }
 
     /**

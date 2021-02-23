@@ -5,7 +5,7 @@
 {% block body %}
 <ul>
     {% for movie in movies %}
-    <li>{{ movie.title }} sorti en {{ movie.releaseDate|date('Y') }}</li>
+    <li><a href="{{ path('movie_show', {id: movie.id}) }}">{{ movie.title }} ({{ movie.releaseDate|date('Y') }})</a></li>
     {% endfor %}
 </ul>
 {% endblock %}

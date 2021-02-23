@@ -14,7 +14,8 @@
 
     <ul>
         <h2>Casting</h2>
-        {% for casting in movie.castings %}
+        <strong>Acteur : role</strong>
+        {% for casting in movie.castings|sort((a, b) => a.creditOrder <=> b.creditOrder) %}
         <li>{{ casting.person.firstname }} {{ casting.person.lastname }} : {{ casting.role }}</li>
             
         {% endfor %}

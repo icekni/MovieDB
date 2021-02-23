@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Movie;
+use App\Repository\PersonRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -76,5 +77,15 @@ class TestController extends AbstractController
             ->flush();
 
         return $this->redirectToRoute('test_movie_list');
+    }
+
+    /**
+     * @Route("/test", name="test")
+     */
+    public function test(PersonRepository $personRepository)
+    {
+        $person = $personRepository->find(rand(1, 1000));
+
+        dd($person);
     }
 }
