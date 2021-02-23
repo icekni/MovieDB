@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+<ul>
+    {% for movie in movies %}
+    <li>{{ movie.title }} sorti en {{ movie.releaseDate|date('Y') }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

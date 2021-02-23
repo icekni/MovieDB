@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+{% for movie in movies %}
+<p>{{ movie.title }} sorti en {{ movie.releaseDate|date('Y') }}</p>
+{% endfor %}
+
+{% endblock %}

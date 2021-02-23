@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ movie.title }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ movie.title }} ({{ movie.releaseDate|date('Y') }})</h1>
+    <small>
+    {% for genre in movie.genres %}
+        {{ genre.name }}
+    {% endfor %}
+    </small>
+
+    <p>
+    {% for review in movie.reviews %}
+        {{ review.content }}
+    {% endfor %}
+    </p>
+
+{% endblock %}
