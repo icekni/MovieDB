@@ -12,6 +12,15 @@
     {% endfor %}
     </small>
 
+    <ul>
+        <h2>Casting</h2>
+        {% for casting in movie.castings %}
+        <li>{{ casting.person.firstname }} {{ casting.person.lastname }} : {{ casting.role }}</li>
+            
+        {% endfor %}
+    </ul>
+
+    <h2>Reviews</h2>
     <p>
     {% for review in movie.reviews %}
         {{ review.content }}
