@@ -59,17 +59,23 @@ class AppFixtures extends Fixture
                 $movie->addGenre($genre);
             }
 
-            // Pour chaque film, on va generer des roles
-            for ($j = 0; $j < rand(1, 50); $j++) {
-                $casting = new Casting();
+            // Tableau qui va melanger le creditOrder
+            $creditOrder = [];
+            $nbRoles = rand(1, 50);
+            for ($j = 0; $j < $nbRoles; $j++) {
+                $creditOrder[] = $j;
+            }
+            // On melange 
+            shuffle($creditOrder);
 
-                // Tirage au hasard parmi les personnes
-                $person = $manager->getRepository(Person::class)->find(rand(1, 1000));
+            // Pour chaque film, on va generer des roles
+            for ($j = 0; $j < $nbRoles; $j++) {
+                $casting = new Casting();
 
                 $casting->setMovie($movie)
                     ->setRole($faker->jobTitle())
                     // ->setPerson($person)
-                    ->setCreditOrder($j + 1)
+                    ->setCreditOrder($creditOrder[$j])
                     // On lui assigne une personne
                     ->setPerson($persons[rand(0, count($persons) - 1)]);
 
