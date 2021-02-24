@@ -19,6 +19,50 @@ class MovieRepository extends ServiceEntityRepository
         parent::__construct($registry, Movie::class);
     }
 
+    /**
+     * @return Movie[] Returns an array of Movie objects
+     */    
+    public function findAllOrderedByTitleAsc()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.title', 'ASC')
+            ->innerJoin('m.person', 'p')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT m
+            FROM App\Entity\Movie m
+            ORDER BY m.title ASC');
+        return $query->getResult();
+    }
+
+    public function findAllInOneRQ($id)
+    {
+        return $this->createQueryBuilder('m')
+            ->innerJoin('m.castings', 'c')
+            ->innerJoin('c.person', 'p')
+            ->addSelect('c')
+            ->addSelect('p')
+            ->andWhere('m.id = :id')
+            ->setParameter('id', $id)
+            ->addOrderBy('c.credit_order', 'ASC')
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    public function search($query)
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.title LIKE :title')
+            ->setParameter('title', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Movie[] Returns an array of Movie objects
     //  */

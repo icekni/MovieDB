@@ -6,6 +6,12 @@
 <ul>
     {% for movie in movies %}
     <li><a href="{{ path('movie_show', {id: movie.id}) }}">{{ movie.title }} ({{ movie.releaseDate|date('Y') }})</a></li>
+    {% else %}
+    <li>Aucun film n'a été trouvé</li>
     {% endfor %}
 </ul>
+<form action="{{ path('movie_search') }}" method="GET">
+    <input type="text" name="query" placeholder="Titre recherché">
+    <button>Rechercher</button>
+</form>
 {% endblock %}

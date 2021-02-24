@@ -19,6 +19,18 @@ class CastingRepository extends ServiceEntityRepository
         parent::__construct($registry, Casting::class);
     }
 
+    public function test($movie)
+    {
+        return $this->createQueryBuilder('c')
+            ->innerJoin('c.person', 'p')
+            ->addSelect('p')
+            ->andWhere('c.movie = :movie')
+            ->setParameter('movie', $movie)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Casting[] Returns an array of Casting objects
     //  */

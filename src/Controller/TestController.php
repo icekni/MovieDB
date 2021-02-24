@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use Faker\Factory;
 use App\Entity\Movie;
+use App\Repository\MovieRepository;
 use App\Repository\PersonRepository;
+use App\Repository\CastingRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -82,10 +85,10 @@ class TestController extends AbstractController
     /**
      * @Route("/test", name="test")
      */
-    public function test(PersonRepository $personRepository)
+    public function test()
     {
-        $person = $personRepository->find(rand(1, 1000));
+        $faker = Factory::create('fr_FR');
 
-        dd($person);
+        dd($faker->realText());
     }
 }

@@ -41,6 +41,7 @@ class Person
 
     /**
      * @ORM\OneToMany(targetEntity=Casting::class, mappedBy="person")
+     * @ORM\OrderBy({"credit_order" = "DESC"})
      */
     private $castings;
 
