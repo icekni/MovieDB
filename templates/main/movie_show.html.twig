@@ -23,6 +23,7 @@
     </ul>
 
     <h2>Reviews</h2>
+    <a href="{{ path('movie_addreview', {id: movie.id}) }}">Ajouter une review</a>
     <p>
     {% for review in movie.reviews %}
         <p>{{ review.content }}</p>

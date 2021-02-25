@@ -22,11 +22,12 @@ class MovieRepository extends ServiceEntityRepository
     /**
      * @return Movie[] Returns an array of Movie objects
      */    
-    public function findAllOrderedByTitleAsc()
+    public function findAllOrderedByTitleAsc($query)
     {
         return $this->createQueryBuilder('m')
             ->orderBy('m.title', 'ASC')
-            ->innerJoin('m.person', 'p')
+            ->where('m.title LIKE :title')
+            ->setParameter('title', '%' . $query . '%')
             ->getQuery()
             ->getResult()
         ;
