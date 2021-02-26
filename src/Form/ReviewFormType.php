@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -25,6 +26,20 @@ class ReviewFormType extends AbstractType
             ])
             ->add('movie_id', HiddenType::class, [
                 'required' => true,
+                'constraints' => [
+                    // Non vide
+                    new NotBlank(),
+                ]
+            ])
+            ->add('rating', ChoiceType::class, [
+                'required' => true,
+                'choices' => [
+                    '*' => '1',
+                    '**' => '2',
+                    '***' => '3',
+                    '****' => '4',
+                    '*****' => '5'
+                ],
                 'constraints' => [
                     // Non vide
                     new NotBlank(),
